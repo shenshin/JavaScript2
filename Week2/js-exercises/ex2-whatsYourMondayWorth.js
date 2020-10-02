@@ -11,28 +11,45 @@
 
  */
 
+// Write a function that finds out what your hourly rate on a Monday would be
 
+// I suppose, the task actually was to find the total sum for the day
+// because 'hourly rate' is already known from the func parameter
 function dayWorth(tasks, hourlyRate) {
   // put your code in here, the function does returns a euro formatted string
+  if (!Array.isArray(tasks) || !isFinite(hourlyRate))
+    throw new TypeError('Wrong parameter types in dayWorth()')
+  const minuteRate = hourlyRate / 60
+  const totalSum = tasks.map(object => {
+    if (!object.hasOwnProperty('duration'))
+      throw new TypeError('Object in passed array has to have "duration" property')
+    if (!isFinite(object.duration))
+      throw new TypeError('Value of a "duration" property must be a number')
+    return object.duration * minuteRate
+  }).reduce((s, x) => s + x, 0)
+  return `€${totalSum.toFixed(2)}`
 }
 
 const mondayTasks = [{
-    name: 'Daily standup',
-    duration: 30, // specified in minutes
-  },
-  {
-    name: 'Feature discussion',
-    duration: 120,
-  },
-  {
-    name: 'Development time',
-    duration: 240,
-  },
-  {
-    name: 'Talk to different members from the product team',
-    duration: 60,
-  },
+  name: 'Daily standup',
+  duration: '30', // specified in minutes
+},
+{
+  name: 'Feature discussion',
+  duration: 120,
+},
+{
+  name: 'Development time',
+  duration: 240,
+},
+{
+  name: 'Talk to different members from the product team',
+  duration: 60,
+},
 ];
-
-console.log(dayWorth(mondayTasks, 25))
-console.log(dayWorth(mondayTasks, 13.37))
+try {
+  console.log(dayWorth(mondayTasks, '25'))
+  console.log(dayWorth(mondayTasks, 13.37))
+} catch (error) {
+  console.log(error.message)
+}

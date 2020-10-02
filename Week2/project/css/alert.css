@@ -1,0 +1,48 @@
+:root {
+    --alert-animation-duration: 1s;
+  }
+.alert {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
+}
+.alert-content {
+    color: var(--background-color);
+    background-color: var(--foreground-color);
+    text-align: center;
+    margin: 10% auto;
+    width: 40%;
+    padding: 1.6rem;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.6), 0 7px 20px 0 rgba(0, 0, 0, 0.6);
+    animation-name: showalert;
+    animation-duration: var(--alert-animation-duration);
+}
+.alert-content h1 {
+    margin-bottom: 1rem;
+}
+.alert-button {
+    margin-bottom: 1rem;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    font-family: 'DigitalDream', monospace;
+    padding: 0.4rem 1.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid var(--background-color);
+  }
+
+@keyframes showalert {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

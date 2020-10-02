@@ -14,6 +14,8 @@
 
 function takeOutLemons(basket) {
   // your code goes in here. The output is a string 
+  const returnString = basket.filter(fruit => fruit !== 'Lemon').join(', ')
+  return `My mom bought me a fruit basket, containing ${returnString}!`
 }
 
 const fruitBasket = ['Apple', 'Lemon', 'Grapefruit', 'Lemon', 'Banana', 'Watermelon', 'Lemon'];

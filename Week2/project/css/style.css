@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('alert.css');
+@font-face {
+  font-family: 'Digital7';
+  src: url("./fonts/digital-7.regular.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'DigitalDream';
+  src: url("./fonts/digital-dream.fat.ttf") format('truetype');
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --background-color: #19444a;
+  --border-color: #11292c;
+  --foreground-color: #fff;
+  --disabled-color: #809b9e;
+}
+html {
+  font-size: 4.6vmin;
+}
+body {
+  padding-top: 2rem;
+  font-family: 'Righteous', cursive;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  text-align: center;
+  /* disables text selection on Chrome, Safari, and Opera */
+  -webkit-user-select: none; 
+  /* Disable Android and iOS callouts*/
+  -webkit-touch-callout: none;
+  cursor: default;
+}
+h3:active, h3:focus, h3::selection {
+  cursor: default;
+}
+h1 {
+  margin-bottom: 0.5rem;
+}
+.time-display {
+  font-family: 'DigitalDream', monospace;
+  font-weight: 100;
+  font-size: 2.6rem;
+}
+.seconds-delimiter, .miliseconds-delimiter {
+  margin: 0 -0.8rem;
+}
+.time-area {
+  padding: 0.6rem 2rem 1rem 2rem;
+  margin: 0.8rem auto;
+  width: fit-content;
+  border: 0.3rem solid var(--border-color);
+}
+.time-area h3 {
+  margin-bottom: 0.5rem;
+}
+.arrow-up, .arrow-down {
+  font-size: 1rem;
+}
+.session-length {
+  margin: 0 0.5rem;
+}
+.play, .pause, .stop {
+  font-size: 0.8rem;
+}
+.play, .stop {
+  margin-right: 0.6rem;
+}
+.disabled {
+  color: var(--disabled-color);
+  cursor: default;
+}
+.enabled {
+  color: var(--foreground-color);
+  cursor: pointer;
+}
