@@ -16,15 +16,7 @@ function doubleEvenNumbers(numbers) {
   // }
 
   // return newNumbers;
-  if (Array.isArray(numbers) && numbers !== null) {
-    const array = [...numbers] // clone array
-    return array.filter(x => x % 2 === 0).map(x => x * 2)
-  } else throw new TypeError('doubleEvenNumbers() parameter must be an array')
+  return numbers.filter(x => x % 2 === 0).map(x => x * 2)
 }
-
 const myNumbers = [1, 2, 3, 4];
-try {
-  console.log(doubleEvenNumbers(myNumbers)); // Logs "[4, 8]" to the console
-} catch (error) {
-  console.log(error.message)
-}
+console.log(doubleEvenNumbers(myNumbers)); // Logs "[4, 8]" to the console
