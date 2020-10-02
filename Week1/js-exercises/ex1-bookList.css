@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  color: rgb(92, 48, 17);
+  background-color: blanchedalmond;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.booklist {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.booklist-item {
+    flex-basis: 21.785rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    color: lightgoldenrodyellow;
+    border-radius: 3px;
+}
+.booklist-item p {
+    font-size: 1.5em;
+}
+.booklist-item img {
+    width: 50%;
+}
+.green-background {
+  background-color: olivedrab;
+}
+.red-background {
+  background-color: indianred;
+}

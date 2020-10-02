@@ -1,13 +1,59 @@
-/**
- 
- ** Exercise 5: The cat walk **
- Starting with an HTML, which has a single img tag of an animated GIF of a cat walking.
+'use strict'
 
- 1. Create a variable to store a reference to the img.
- 2. Change the style of the img to have a "left" of "0px", so that it starts at the left hand of the screens.
- 3. Create a  function called catWalk() that moves the cat 10 pixels to the right of where it started, by changing the "left" style property.
- 4. Call that function every 50 milliseconds.Your cat should now be moving across the screen from left to right.Hurrah!
- 5. When the cat reaches the right - hand of the screen, restart them at the left hand side("0px").So they should keep walking from left to right across the screen, forever and ever.
- 6. When the cat reaches the middle of the screen, replace the img with an image of a cat dancing(use this URL: https: //tenor.com/StFI.gif), keep it dancing for 5 seconds, and then replace the img with the original image and have it continue the walk.
- 
-*/
+/* ********** movement parameters *************************************************/
+let catVelocity = 2 // pixels - positive values move image right and negative - left
+const speed = 0.5 // 0 < speed <= catVelocity 
+const catDanceLength = 1 // seconds
+/* ********************************************************************************/
+
+// Walking cat image
+const walkingCat = document.querySelector('img')
+
+// Dancing cat image
+const dancingCat = document.createElement('img')
+dancingCat.setAttribute('src', './img/dancing-cat.gif')
+dancingCat.setAttribute('alt', 'Dancing Queen')
+dancingCat.style.position = 'absolute'
+dancingCat.style.display = 'none'
+document.body.appendChild(dancingCat)
+
+// Position at the left screen border
+walkingCat.style.left = `0px`
+
+// Start walking
+let promenade = setInterval(catWalk, Math.abs(catVelocity / speed))
+
+function catWalk() {
+  const catPosition = walkingCat.getBoundingClientRect() // get cat current position
+  const screenCenter = (document.body.clientWidth - catPosition.width) / 2
+  // minimum distance which is definitely visited by the cat only ONCE
+  const minInterval = Math.abs(catVelocity) / 2
+
+  if (
+    // If cat walks out of the window's borders
+    catPosition.left + catVelocity + catPosition.width < 0 ||
+    catPosition.right + catVelocity - catPosition.width > document.body.clientWidth
+  ) {
+    // Move cat in opposite direction
+    catVelocity = -catVelocity
+    // flip cat image horizontally while it hides behind screen left or right margins
+    walkingCat.style.transform = `scaleX(${Math.sign(catVelocity)})`
+  }
+
+  // Stop walking in the middle of the screen and start dancing
+  if (catPosition.left >= screenCenter - minInterval && catPosition.left <= screenCenter + minInterval) {
+    clearInterval(promenade) // stop walking
+    dancingCat.style.width = catPosition.width + 'px'
+    dancingCat.style.left = catPosition.left + 'px' // place dance image by coords of walk
+    dancingCat.style.display = 'block' // reveal hidden dancing cat
+    walkingCat.style.display = 'none' // hide walking cat
+    setTimeout(restartWalk, 1000 * catDanceLength) // dance some time
+  }
+  // Move cat right or left depending on the sign of the velocity
+  walkingCat.style.left = catPosition.left + catVelocity + 'px'
+}
+function restartWalk() {
+  dancingCat.style.display = 'none' // hide dancing cat for a while
+  walkingCat.style.display = 'block' // show hidden walking cat
+  promenade = setInterval(catWalk, Math.abs(catVelocity / speed)) // restart walking
+}

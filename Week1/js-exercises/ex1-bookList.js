@@ -1,3 +1,4 @@
+'use strict'
 /**
   
  ** Exercise 1: The book list **
@@ -18,23 +19,47 @@
 
 function createBookList(books) {
   // your code goes in here, return the ul element
+  const ulElement = document.createElement('ul')
+  ulElement.className = 'booklist'
+  for (const book of books) {
+    // list item
+    const liElement = document.createElement('li')
+    liElement.className = 'booklist-item'
+    // add green background if book is already read, and red otherwise
+    liElement.className += book.alreadyRead ? ' green-background' : ' red-background'
+    // paragraph
+    const pElememt = document.createElement('p')
+    pElememt.innerHTML = `${book.title}<br>${book.author}`
+    liElement.appendChild(pElememt)
+    // image
+    const imgElement = document.createElement('img')
+    imgElement.setAttribute('src', book.imageURL)
+    imgElement.setAttribute('alt', book.title)
+    liElement.appendChild(imgElement)
+
+    ulElement.appendChild(liElement)
+  }
+  return ulElement
 }
 
 const books = [{
-    title: 'The Design of Everyday Things',
-    author: 'Don Norman',
-    alreadyRead: false
-  },
-  {
-    title: 'The Most Human Human',
-    author: 'Brian Christian',
-    alreadyRead: true
-  },
-  {
-    title: 'The Pragmatic Programmer',
-    author: 'Andrew Hunt',
-    alreadyRead: true
-  }
+  title: 'The Design of Everyday Things',
+  author: 'Don Norman',
+  alreadyRead: false,
+  imageURL: 'https://images-na.ssl-images-amazon.com/images/I/81zpLhP1gWL.jpg'
+},
+{
+  title: 'The Most Human Human',
+  author: 'Brian Christian',
+  alreadyRead: true,
+  imageURL: 'https://images-na.ssl-images-amazon.com/images/I/71HMyqG6MRL.jpg'
+},
+{
+  title: 'The Pragmatic Programmer',
+  author: 'Andrew Hunt',
+  alreadyRead: true,
+  imageURL: 'https://images-na.ssl-images-amazon.com/images/I/418M2053aNL.jpg'
+}
 ];
 
 let ulElement = createBookList(books);
