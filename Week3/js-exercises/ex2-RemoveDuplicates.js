@@ -58,3 +58,10 @@ Array.prototype.equals = function (anotherArray) {
 // now it works and prints 'Hooray!'
 if (letters.equals(['a', 'b', 'c', 'd', 'e', 'f']))
   console.log("Hooray!") // Hooray!
+
+// if there is no task to modify the existing array but just to return
+// sorted array, the solution will be much simpler:
+function deleteDuplicates(array) {
+  return Array(...new Set(array))
+}
+console.log(deleteDuplicates(letters)) // [ 'a', 'b', 'c', 'd', 'e', 'f' ] 
