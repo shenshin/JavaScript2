@@ -27,12 +27,22 @@ Don't you just love the thrill of the lottery? What if I told you we can make ou
 */
 
 function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
+  if (!(startIndex < stopIndex)) throw new RangeError('Stopindex must be more than startindex')
   const numbers = [];
   // make array
+  for (let i = startIndex; i <= stopIndex; i++) numbers.push(i)
   // start at beginning of array and check if you should call threeCallback or fiveCallback or go on to next
+  numbers.forEach(number => {
+    if (number % 3 === 0) threeCallback(number)
+    if (number % 5 === 0) fiveCallback(number)
+  })
 }
+// create new functions and pass them to threeFive()
+const threeCallback = parameter => console.log(parameter)  // 12, 15
+const fiveCallback = parameter => console.log(parameter)  // 10, 15
+threeFive(10, 15, threeCallback, fiveCallback)
 
-threeFive(10, 15, sayThree, sayFive);
 
 // Should create an array [10,11,12,13,14,15]
 // and call sayFive, sayThree, sayThree, sayFive
+// why these?
