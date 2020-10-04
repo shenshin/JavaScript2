@@ -9,8 +9,6 @@ Call the function three times. The return values should be:
  15, 24, 33
 
  */
-// It looks weird to me and blows my mind:
-// function that returnes a function that returnes a function!
 function createBase(numberX) {
   // Put here your logic...
   let property = numberX
