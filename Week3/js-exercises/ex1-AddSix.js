@@ -31,8 +31,8 @@ console.log(addSix(9)) // 33
 function Base1(numberX) {
   this.property = numberX
 }
-Base1.prototype.add = function (NumberY) {
-  this.property += NumberY
+Base1.prototype.add = function (numberY) {
+  this.property += numberY
   return this.property
 }
 const base1 = new Base1(6)
