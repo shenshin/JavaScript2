@@ -47,13 +47,12 @@ function catWalk() {
     dancingCat.style.left = catPosition.left + 'px' // place dance image by coords of walk
     dancingCat.style.display = 'block' // reveal hidden dancing cat
     walkingCat.style.display = 'none' // hide walking cat
-    setTimeout(restartWalk, 1000 * catDanceLength) // dance some time
+    setTimeout(() => {
+      dancingCat.style.display = 'none' // hide dancing cat for a while
+      walkingCat.style.display = 'block' // show hidden walking cat
+      promenade = setInterval(catWalk, Math.abs(catVelocity / speed)) // restart walking
+    }, 1000 * catDanceLength) // dance some time
   }
   // Move cat right or left depending on the sign of the velocity
   walkingCat.style.left = catPosition.left + catVelocity + 'px'
-}
-function restartWalk() {
-  dancingCat.style.display = 'none' // hide dancing cat for a while
-  walkingCat.style.display = 'block' // show hidden walking cat
-  promenade = setInterval(catWalk, Math.abs(catVelocity / speed)) // restart walking
 }
