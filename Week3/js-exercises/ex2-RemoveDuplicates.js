@@ -19,7 +19,7 @@ does not return anything but removes any duplicate elements from the array.
  * @param {any[]} array an array of elements of any type
  */
 function removeDuplicates(array) {
-  let differentElements = []
+  const differentElements = []
   for (let i = 0; i < array.length; i++) {
     if (differentElements.includes(array[i])) {
       array.splice(i, 1)
