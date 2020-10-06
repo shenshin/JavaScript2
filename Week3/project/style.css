@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root{
+  --dark-brown: #301310;
+  --light-brown: #5b0c0a;
+  --fore-ground: #18020b;
+  --back-ground: #f5f5f5;
+  --raspberry: #9a002d;
+  --grey-background: #65686a;
+  --grey-fore-ground: #9d9da2;
+  --grey-borgder: #acacac;
+}
+html {
+  font-size: 1.25rem;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-image: linear-gradient(to right, var(--dark-brown), var(--light-brown));
+}
+p {
+  margin-bottom: 1rem;
+}
+.app {
+  width: 60%;
+  border-radius: 1.8rem;
+  overflow: hidden;
+}
+header {
+  padding: 0.8rem;
+  text-transform: uppercase;
+  background-color: var(--fore-ground);
+  color: var(--back-ground);
+  text-align: center;
+  font-size: 1.2rem;
+}
+main {
+  padding: 1rem;
+  background-color: var(--back-ground);
+}
+input[type=text] {
+  padding: 0.2rem;
+  width: 60%;
+  height: 2rem;
+  margin-left: 0.2rem;
+  outline: none;
+  font-size: 1rem;
+}
+select {
+  font-size: 5rem;
+}

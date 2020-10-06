@@ -47,13 +47,14 @@ console.log(letters === abcdefg) // true
 console.log(letters) // [ 'a', 'b', 'c', 'd', 'e', 'f' ]
 // I wrote a method to check if one array really equals to another
 // Here it is:
-Array.prototype.equals = function (anotherArray) {
-  if (this.length !== anotherArray.length) return false
-  let isEqual = true
-  for (index in this) {
-    isEqual &= this[index] === anotherArray[index]
-  }
-  return isEqual
+if (!Array.prototype.equals) {
+  Object.defineProperty(Array.prototype, 'equals', {
+    value: function (anotherArray) {
+      return this.length === anotherArray.length &&
+        Array.isArray(anotherArray) &&
+        this.every((val, index) => val === anotherArray[index])
+    }
+  })
 }
 // now it works and prints 'Hooray!'
 if (letters.equals(['a', 'b', 'c', 'd', 'e', 'f']))
