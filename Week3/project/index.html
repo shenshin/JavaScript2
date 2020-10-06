@@ -9,27 +9,40 @@
 </head>
 
 <body>
-  <div class="app">
-    <header>
-      tip calculator
-    </header>
-    <main>
-      <form class="form">
-        <p>How much is your bill?</p>
-        <p>&euro;<input type="text" name="bill-sum" id="bill-sum" placeholder="Enter the amount">
-        </p>
-        <p>How was your service?</p>
-        <select name="service-quality" id="service-quality">
-          <option value="30">30% - Outstanding</option>
-          <option value="20">20% - Good</option>
-          <option value="15">15% - It was OK</option>
-          <option value="10">10% - Bad</option>
-          <option value="5">5% - Terrible</option>
-        </select>
-      </form>
-    </main>
+  <div class="page-container">
+    <div class="app">
+      <header>
+        tip calculator
+      </header>
+      <main>
+        <form class="form">
+          <p>How much is your bill?</p>
+          <p>&euro;<input type="text" id="bill-sum" placeholder="Enter the amount">
+          </p>
+          <p>How was your service?</p>
+          <div class="select-container">
+            <select id="service-quality">
+              <option value="30">30% - Outstanding</option>
+              <option value="20">20% - Good</option>
+              <option value="15">15% - It was OK</option>
+              <option value="10">10% - Bad</option>
+              <option value="5">5% - Terrible</option>
+            </select>
+          </div>
+          <p><input type="text" id="people-number" placeholder="Enter the number of">people</p>
+          <div class="submit-container">
+            <input id="submit-button" type="submit" value="calculate!">
+          </div>
+        </form>
+        <div class="tip-amount">
+          <p>TIP AMOUNT</p>
+          <p class="sum"><sup>&euro;</sup><span id="sum">4.00</span></p>
+          <p>each</p>
+        </div>
+      </main>
+    </div>
+    <script src="index.js"></script>
   </div>
-  <script src="index.js"></script>
 </body>
 
 </html>

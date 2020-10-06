@@ -11,23 +11,23 @@
   --raspberry: #9a002d;
   --grey-background: #65686a;
   --grey-fore-ground: #9d9da2;
-  --grey-borgder: #acacac;
+  --grey-borgder: #d5d5d5;
 }
 html {
   font-size: 1.25rem;
 }
 body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-image: linear-gradient(to right, var(--dark-brown), var(--light-brown));
 }
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
+}
+.page-container {
+  margin-top: 5%;
 }
 .app {
+  margin: auto;
   width: 60%;
   border-radius: 1.8rem;
   overflow: hidden;
@@ -45,13 +45,87 @@ main {
   background-color: var(--back-ground);
 }
 input[type=text] {
-  padding: 0.2rem;
+  padding: 0.4rem;
   width: 60%;
-  height: 2rem;
+  height: 2.4rem;
   margin-left: 0.2rem;
   outline: none;
   font-size: 1rem;
+  border: 1px solid var(--grey-borgder);
+  box-shadow: inset 0 1px 1px #696969;
+}
+.select-container {
+  text-align: center;
 }
 select {
-  font-size: 5rem;
+  padding-left: 0.4rem;
+  margin-bottom: 1.4rem;
+  height: 2.4rem;
+  width: 80%;
+  border: 1px solid var(--grey-borgder);
+  font-size: 1.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+  color: var(--fore-ground);
+  box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+  border-radius: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: inset 0 1px 1px #696969;
+  background-color: var(--back-ground);
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7rem top 50%, 0 0;
+  background-size: .65rem auto, 100%;
+}
+#people-number {
+  margin: 0 0.4rem 0rem 0;
+  text-align: right;
+}
+.submit-container {
+  text-align: center;
+}
+input[type="submit"] {
+  margin-bottom: 1.6rem;
+  height: 3rem;
+  width: 50%;
+  border: 1px solid #cfcfcf;
+  overflow: hidden;
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: var(--raspberry);
+  color: var(--back-ground);
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+.tip-amount {
+  margin-bottom: 1.6rem;
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: bold;
+}
+.tip-amount p {
+  margin-bottom: 0;
+}
+.sum {
+  font-size: 2.4rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: normal;
+}
+@media (max-width: 480px) {
+  .app {
+    width: 100%;
+  }
+  input[type=text] {
+    width: 80%;
+  }
+  select {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  input[type="submit"] {
+    width: 100%;
+  }
 }
