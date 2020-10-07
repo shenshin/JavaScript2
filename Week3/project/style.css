@@ -23,16 +23,14 @@ body {
 p {
   margin-bottom: 1.4rem;
 }
-.page-container {
-  margin-top: 5%;
-}
 .app {
   margin: auto;
+  margin-top: 5%;
   width: 60%;
   border-radius: 1.8rem;
   overflow: hidden;
 }
-header {
+.header {
   padding: 0.8rem;
   text-transform: uppercase;
   background-color: var(--fore-ground);
@@ -40,7 +38,7 @@ header {
   text-align: center;
   font-size: 1.2rem;
 }
-main {
+.main {
   padding: 1rem;
   background-color: var(--back-ground);
 }
@@ -100,16 +98,16 @@ input[type="submit"] {
   font-family: sans-serif;
   text-transform: uppercase;
 }
-.tip-amount {
+.footer {
   margin-bottom: 1.6rem;
   font-size: 1.3rem;
   text-align: center;
   font-weight: bold;
 }
-.tip-amount p {
+.footer p {
   margin-bottom: 0;
 }
-.sum {
+.tip-amount {
   font-size: 2.4rem;
   font-family: 'Times New Roman', Times, serif;
   font-weight: normal;
