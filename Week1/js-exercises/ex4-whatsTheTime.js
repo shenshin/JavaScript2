@@ -21,7 +21,6 @@
 const hoursContainer = document.getElementById('hours')
 const minutesDelimiterContainer = document.getElementById('minutes-delimiter')
 const minutesContainer = document.getElementById('minutes')
-//const secondsDelimiterContainer = document.getElementById('seconds-delimiter')
 const secondsContainer = document.getElementById('seconds')
 
 function displayCurrentTime() {
@@ -36,11 +35,13 @@ function getTwoDigits(number) {
   return ('0' + number).slice(-2);
 }
 // Set up blinking colon between hours and minutes
-let minutesDelimiterIsOn = true
-function displayColon() {
-  minutesDelimiterContainer.innerHTML = minutesDelimiterIsOn ? ':' : '&nbsp;'
-  minutesDelimiterIsOn = !minutesDelimiterIsOn
+const colon = {
+  isOn: true,
+  blink: () => {
+    minutesDelimiterContainer.innerHTML = this.isOn ? ':' : '&nbsp;'
+    this.isOn = !this.isOn
+  }
 }
 
 setInterval(displayCurrentTime, 1000)
-setInterval(displayColon, 500)
+setInterval(colon.blink, 500)

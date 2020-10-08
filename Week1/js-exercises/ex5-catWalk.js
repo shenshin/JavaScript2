@@ -1,58 +1,91 @@
 'use strict'
 
 /* ********** movement parameters *************************************************/
-let catVelocity = 2 // pixels - positive values move image right and negative - left
-const speed = 0.5 // 0 < speed <= catVelocity 
+const catVelocity = 2 // pixels - positive values move image right and negative - left
+const catSpeed = 0.5 // 0 < speed <= catVelocity 
 const catDanceLength = 1 // seconds
 /* ********************************************************************************/
+class Cat {
+  constructor(walkingCatElement, dancingCatElement, velocity, speed, danceLength) {
+    this.velocity = velocity
+    this.speed = speed
+    this.danceLength = danceLength
+    // cat images
+    this.walkingCat = new CatImage(walkingCatElement)
+    this.dancingCat = new CatImage(dancingCatElement)
+    // Position at the left screen border
+    this.walkingCat.left = 0
+    // Start walking forward and back
+    this.startWalk()
+  }
+  startWalk() {
+    this.promenade = setInterval(this.walk.bind(this), Math.abs(this.velocity / this.speed))
+  }
+  walk() {
+    const screenCenter = (document.body.clientWidth - this.walkingCat.width) / 2
+    // minimum distance which is definitely visited by the cat only ONCE
+    const minInterval = Math.abs(this.velocity) / 2
+    if (
+      // Rorate If cat walks out of the window's borders
+      this.walkingCat.left + this.velocity + this.walkingCat.width < 0 ||
+      this.walkingCat.right + this.velocity - this.walkingCat.width > document.body.clientWidth
+    ) this.rotate()
 
-// Walking cat image
+    // Stop walking in the middle of the screen and start dancing
+    if (this.walkingCat.left >= screenCenter - minInterval &&
+      this.walkingCat.left <= screenCenter + minInterval) this.dance()
+
+    // Move cat right or left depending on the sign of the velocity
+    this.walkingCat.left += this.velocity
+  }
+  rotate() {
+    // Move cat in opposite direction
+    this.velocity = -this.velocity
+    this.walkingCat.rotate(this.velocity)
+  }
+  dance() {
+    clearInterval(this.promenade) // stop walking
+    this.dancingCat.width = this.walkingCat.width
+    this.dancingCat.left = this.walkingCat.left // place dance image by coords of walk
+    this.dancingCat.show() // reveal hidden dancing cat
+    this.walkingCat.hide() // conceal walking cat
+    setTimeout(this.restartWalk.bind(this), 1000 * this.danceLength) // dance some time
+  }
+  restartWalk() {
+    this.dancingCat.hide() // conceal dancing cat for a while
+    this.walkingCat.show() // show hidden walking cat
+    this.startWalk() // restart walking
+  }
+}
+class CatImage {
+  constructor(htmlElement) {
+    this.image = htmlElement
+  }
+  show() {
+    this.image.style.display = 'block'
+  }
+  hide() {
+    this.image.style.display = 'none'
+  }
+  rotate(direction) {
+    // flip cat image horizontally while it hides behind screen left or right margins
+    this.image.style.transform = `scaleX(${Math.sign(direction)})`
+  }
+  get width() { return parseInt(this.image.clientWidth) }
+  set width(newValue) { this.image.style.width = newValue + 'px' }
+
+  get left() { return parseInt(this.image.style.left) }
+  set left(newValue) { this.image.style.left = newValue + 'px' }
+
+  get right() { return this.left + this.width }
+}
+// Walking cat
 const walkingCat = document.querySelector('img')
-
-// Dancing cat image
+// Create dancing cat image
 const dancingCat = document.createElement('img')
 dancingCat.setAttribute('src', './img/dancing-cat.gif')
 dancingCat.setAttribute('alt', 'Dancing Queen')
 dancingCat.style.position = 'absolute'
 dancingCat.style.display = 'none'
 document.body.appendChild(dancingCat)
-
-// Position at the left screen border
-walkingCat.style.left = `0px`
-
-// Start walking
-let promenade = setInterval(catWalk, Math.abs(catVelocity / speed))
-
-function catWalk() {
-  const catPosition = walkingCat.getBoundingClientRect() // get cat current position
-  const screenCenter = (document.body.clientWidth - catPosition.width) / 2
-  // minimum distance which is definitely visited by the cat only ONCE
-  const minInterval = Math.abs(catVelocity) / 2
-
-  if (
-    // If cat walks out of the window's borders
-    catPosition.left + catVelocity + catPosition.width < 0 ||
-    catPosition.right + catVelocity - catPosition.width > document.body.clientWidth
-  ) {
-    // Move cat in opposite direction
-    catVelocity = -catVelocity
-    // flip cat image horizontally while it hides behind screen left or right margins
-    walkingCat.style.transform = `scaleX(${Math.sign(catVelocity)})`
-  }
-
-  // Stop walking in the middle of the screen and start dancing
-  if (catPosition.left >= screenCenter - minInterval && catPosition.left <= screenCenter + minInterval) {
-    clearInterval(promenade) // stop walking
-    dancingCat.style.width = catPosition.width + 'px'
-    dancingCat.style.left = catPosition.left + 'px' // place dance image by coords of walk
-    dancingCat.style.display = 'block' // reveal hidden dancing cat
-    walkingCat.style.display = 'none' // hide walking cat
-    setTimeout(() => {
-      dancingCat.style.display = 'none' // hide dancing cat for a while
-      walkingCat.style.display = 'block' // show hidden walking cat
-      promenade = setInterval(catWalk, Math.abs(catVelocity / speed)) // restart walking
-    }, 1000 * catDanceLength) // dance some time
-  }
-  // Move cat right or left depending on the sign of the velocity
-  walkingCat.style.left = catPosition.left + catVelocity + 'px'
-}
+const cat = new Cat(walkingCat, dancingCat, catVelocity, catSpeed, catDanceLength)
