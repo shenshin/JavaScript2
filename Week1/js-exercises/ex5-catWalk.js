@@ -1,13 +1,13 @@
 'use strict'
 
 /* ********** movement parameters *************************************************/
-const catVelocity = 2 // pixels - positive values move image right and negative - left
-const catSpeed = 0.5 // 0 < speed <= catVelocity 
-const catDanceLength = 1 // seconds
+const catSmoothness = 2 // pixels - distance the cat moves in one step
+const catSpeed = 0.5 // 0 < speed <= catSmoothness - how fast the cat walkes
+const catDanceLength = 1 // seconds - time that cat dances in the middle of the screen
 /* ********************************************************************************/
 class Cat {
-  constructor(walkingCatElement, dancingCatElement, velocity, speed, danceLength) {
-    this.velocity = velocity
+  constructor(walkingCatElement, dancingCatElement, smoothness, speed, danceLength) {
+    this.stepLength = smoothness
     this.speed = speed
     this.danceLength = danceLength
     // cat images
@@ -19,16 +19,16 @@ class Cat {
     this.startWalk()
   }
   startWalk() {
-    this.promenade = setInterval(this.walk.bind(this), Math.abs(this.velocity / this.speed))
+    this.promenade = setInterval(this.walk.bind(this), Math.abs(this.stepLength / this.speed))
   }
   walk() {
     const screenCenter = (document.body.clientWidth - this.walkingCat.width) / 2
     // minimum distance which is definitely visited by the cat only ONCE
-    const minInterval = Math.abs(this.velocity) / 2
+    const minInterval = Math.abs(this.stepLength) / 2
     if (
       // Rorate If cat walks out of the window's borders
-      this.walkingCat.left + this.velocity + this.walkingCat.width < 0 ||
-      this.walkingCat.right + this.velocity - this.walkingCat.width > document.body.clientWidth
+      this.walkingCat.left + this.stepLength + this.walkingCat.width < 0 ||
+      this.walkingCat.right + this.stepLength - this.walkingCat.width > document.body.clientWidth
     ) this.rotate()
 
     // Stop walking in the middle of the screen and start dancing
@@ -36,12 +36,12 @@ class Cat {
       this.walkingCat.left <= screenCenter + minInterval) this.dance()
 
     // Move cat right or left depending on the sign of the velocity
-    this.walkingCat.left += this.velocity
+    this.walkingCat.left += this.stepLength
   }
   rotate() {
     // Move cat in opposite direction
-    this.velocity = -this.velocity
-    this.walkingCat.rotate(this.velocity)
+    this.stepLength = -this.stepLength
+    this.walkingCat.rotate(this.stepLength)
   }
   dance() {
     clearInterval(this.promenade) // stop walking
@@ -88,4 +88,4 @@ dancingCat.setAttribute('alt', 'Dancing Queen')
 dancingCat.style.position = 'absolute'
 dancingCat.style.display = 'none'
 document.body.appendChild(dancingCat)
-const cat = new Cat(walkingCat, dancingCat, catVelocity, catSpeed, catDanceLength)
+const cat = new Cat(walkingCat, dancingCat, catSmoothness, catSpeed, catDanceLength)
