@@ -15,7 +15,10 @@ function f1(val) {
   return val;
 }
 f1(x);
-console.log(x);
+// x is an integer and is passed to the function
+// as a value. So, the changes made to parameter inside the function
+// do not effect the variable which was passed as a parameter
+console.log(x); // prints 9
 
 const y = {
   x: 9
@@ -26,4 +29,8 @@ function f2(val) {
   return val;
 }
 f2(y);
-console.log(y);
+// However objects and arrays are passed as references. 
+// Function receives a reference to object y,
+// and changes made to parameter inside the function
+// effect the object.
+console.log(y); // {x: 10}

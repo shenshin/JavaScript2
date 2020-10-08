@@ -25,21 +25,9 @@ console.log(addSix(9)) // 15
 console.log(addSix(9)) // 24
 console.log(addSix(9)) // 33
 
-// Next approach does the same but looks absolutly sane to me!!!
-function Base1(numberX) {
-  this.property = numberX
-}
-Base1.prototype.add = function (numberY) {
-  this.property += numberY
-  return this.property
-}
-const base1 = new Base1(6)
-console.log(base1.add(9)) // 15
-console.log(base1.add(9)) // 24
-console.log(base1.add(9)) // 33
-
-// And next one - even more sane
-class Base2 {
+// Do I understand it right, that
+// the code above is equivalent to the following?:
+class Base {
   constructor(numberX) {
     this.capturedVar = numberX
   }
@@ -48,7 +36,7 @@ class Base2 {
     return this.capturedVar
   }
 }
-const base2 = new Base2(6)
+const base2 = new Base(6)
 console.log(base2.add(9)) // 15
 console.log(base2.add(9)) // 24
 console.log(base2.add(9)) // 33
