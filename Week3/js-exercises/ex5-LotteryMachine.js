@@ -27,7 +27,7 @@ Don't you just love the thrill of the lottery? What if I told you we can make ou
 */
 
 function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
-  if (!(startIndex < stopIndex)) throw new RangeError('Stopindex must be more than startindex')
+  if (!(startIndex < stopIndex)) throw new RangeError('Stop index must be more than start index')
   const numbers = [];
   // make array
   for (let i = startIndex; i <= stopIndex; i++) numbers.push(i)

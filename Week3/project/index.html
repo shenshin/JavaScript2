@@ -9,36 +9,36 @@
 </head>
 
 <body>
-    <div class="app">
-      <div class="header">
-        tip calculator
-      </div>
-      <div class="main">
-        <form id="form">
-          <p>How much is your bill?</p>
-          <p>&euro;<input type="text" id="bill-sum" placeholder="Enter the amount">
-          </p>
-          <p>How was your service?</p>
-          <div class="select-container">
-            <select id="service-quality">
-              <option value="30">30% - Outstanding</option>
-              <option value="20">20% - Good</option>
-              <option value="15">15% - It was OK</option>
-              <option value="10">10% - Bad</option>
-              <option value="5">5% - Terrible</option>
-            </select>
-          </div>
-          <p><input type="text" id="people-number" placeholder="Enter the number of">people</p>
-          <div class="submit-container">
-            <input id="submit-button" type="submit" value="calculate!">
-          </div>
-        </form>
-        <div class="footer">
-          <p>TIP AMOUNT</p>
-          <p class="tip-amount"><sup>&euro;</sup><span id="tip-amount">4.00</span></p>
-          <p><span id="each">each</span></p>
+  <div class="app">
+    <div class="header">
+      tip calculator
+    </div>
+    <div class="main">
+      <form id="form">
+        <p>How much is your bill?</p>
+        <p>&euro;<input type="text" id="bill-sum" placeholder="Enter the amount">
+        </p>
+        <p>How was your service?</p>
+        <div class="select-container">
+          <select id="service-quality">
+            <option value="30">30% - Outstanding</option>
+            <option value="20">20% - Good</option>
+            <option value="15">15% - It was OK</option>
+            <option value="10">10% - Bad</option>
+            <option value="5">5% - Terrible</option>
+          </select>
         </div>
+        <p><input type="text" id="people-number" placeholder="Enter the number of">people</p>
+        <div class="submit-container">
+          <input id="submit-button" type="submit" value="calculate!">
+        </div>
+      </form>
+      <div class="footer">
+        <p>TIP AMOUNT</p>
+        <p class="tip-amount"><sup>&euro;</sup><span id="tip-amount">0.00</span></p>
+        <p><span id="each">each</span></p>
       </div>
+    </div>
     <script src="index.js"></script>
   </div>
 </body>
