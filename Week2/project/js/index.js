@@ -18,7 +18,7 @@ const sessionLengthIndicator = document.querySelector('.session-length')
 const minutesIndicator = document.querySelector('.minutes')
 const secondsDelimIndicator = document.querySelector('.seconds-delimiter')
 const secondsIndicator = document.querySelector('.seconds')
-const milisecondsIndicator = document.querySelector('.miliseconds')
+const millisecondsIndicator = document.querySelector('.miliseconds')
 const playButton = document.querySelector('.play')
 const stopButton = document.querySelector('.stop')
 const pauseButton = document.querySelector('.pause')
@@ -90,7 +90,7 @@ function pause() {
 function showTime() {
   minutesIndicator.innerHTML = showTwoDigits(currentTime.getMinutes())
   secondsIndicator.innerHTML = showTwoDigits(currentTime.getSeconds())
-  milisecondsIndicator.innerHTML = showMilliseconds(currentTime.getMilliseconds())
+  millisecondsIndicator.innerHTML = showMilliseconds(currentTime.getMilliseconds())
   function showTwoDigits(number) {
     return ('0' + number).slice(-2)
   }
@@ -115,6 +115,7 @@ function updateViews() {
   setDisabled(!timer && !sessionIsOn, stopButton, pauseButton)
   setDisabled(!timer, pauseButton)
   setDisabled(sessionIsOn, arrowDown, arrowUp)
+  setDisabled(timer, playButton)
   function setDisabled(condition, ...nodes) {
     if (condition)
       for (const node of nodes) {
