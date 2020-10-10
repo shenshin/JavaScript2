@@ -7,7 +7,6 @@ const authorNode = document.querySelector('.author span');
 // add click listener to 'New quote' button
 document.querySelector('.button:last-child').addEventListener('click', () => {
   if (quotesArray) {
-    console.log(quotesArray.length);
     getNewQuote();
   }
 });
