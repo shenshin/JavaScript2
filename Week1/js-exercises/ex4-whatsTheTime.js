@@ -45,6 +45,6 @@ const colon = {
     this.isOn = !this.isOn;
   },
 };
-
+displayCurrentTime();
 setInterval(displayCurrentTime, 1000);
 setInterval(colon.blink, 500);
