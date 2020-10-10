@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 /**
  
  ** Exercise 4: What 's the time? **
@@ -18,30 +19,32 @@
 // Set up refferences to the div's in HTML file
 // I consider them to be outside the function for the reason
 // not to set them up every function call
-const hoursContainer = document.getElementById('hours')
-const minutesDelimiterContainer = document.getElementById('minutes-delimiter')
-const minutesContainer = document.getElementById('minutes')
-const secondsContainer = document.getElementById('seconds')
+const hoursContainer = document.getElementById('hours');
+const minutesDelimiterContainer = document.getElementById('minutes-delimiter');
+const minutesContainer = document.getElementById('minutes');
+const secondsContainer = document.getElementById('seconds');
 
-function displayCurrentTime() {
-  // your code goes in here
-  const now = new Date()
-  hoursContainer.innerHTML = getTwoDigits(now.getHours())
-  minutesContainer.innerHTML = getTwoDigits(now.getMinutes())
-  secondsContainer.innerHTML = getTwoDigits(now.getSeconds())
-}
 // Make display always show two digits showing time components
 function getTwoDigits(number) {
   return ('0' + number).slice(-2);
 }
+
+function displayCurrentTime() {
+  // your code goes in here
+  const now = new Date();
+  hoursContainer.innerHTML = getTwoDigits(now.getHours());
+  minutesContainer.innerHTML = getTwoDigits(now.getMinutes());
+  secondsContainer.innerHTML = '.' + getTwoDigits(now.getSeconds());
+}
+
 // Set up blinking colon between hours and minutes
 const colon = {
   isOn: true,
   blink: () => {
-    minutesDelimiterContainer.innerHTML = this.isOn ? ':' : '&nbsp;'
-    this.isOn = !this.isOn
-  }
-}
+    minutesDelimiterContainer.innerHTML = this.isOn ? ':' : '&nbsp;';
+    this.isOn = !this.isOn;
+  },
+};
 
-setInterval(displayCurrentTime, 1000)
-setInterval(colon.blink, 500)
+setInterval(displayCurrentTime, 1000);
+setInterval(colon.blink, 500);

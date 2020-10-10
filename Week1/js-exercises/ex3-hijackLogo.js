@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 /**
  
  ** Exercise 3: The logo hijack **
@@ -28,15 +29,15 @@ style="padding-top:109px" width="272"> */
 
 function hijackGoogleLogo() {
   // your code goes in here
-  const googleLogoImage = document.getElementById('hplogo')
-  const googleLogoParent = googleLogoImage.parentElement
-  const hyfLogoImage = document.createElement('img')
-  hyfLogoImage.setAttribute('src', 'https://www.hackyourfuture.dk/static/logo-dark.svg')
-  hyfLogoImage.setAttribute('alt', 'Hack Your Google!')
-  hyfLogoImage.id = 'hplogo'
-  hyfLogoImage.style.width = '272px'
-  hyfLogoImage.style.paddingTop = '50px'
+  const googleLogoImage = document.getElementById('hplogo');
+  const googleLogoParent = googleLogoImage.parentElement;
+  const hyfLogoImage = document.createElement('img');
+  hyfLogoImage.setAttribute('src', 'https://www.hackyourfuture.dk/static/logo-dark.svg');
+  hyfLogoImage.setAttribute('alt', 'Hack Your Google!');
+  hyfLogoImage.id = 'hplogo';
+  hyfLogoImage.style.width = '272px';
+  hyfLogoImage.style.paddingTop = '50px';
 
-  googleLogoParent.replaceChild(hyfLogoImage, googleLogoImage)
+  googleLogoParent.replaceChild(hyfLogoImage, googleLogoImage);
 }
 hijackGoogleLogo();
