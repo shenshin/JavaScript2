@@ -235,21 +235,39 @@ class TimerController {
   pushPlay() {
     this.timer.start();
     this.updateViews();
+    if (!this.blinkingColon) this.blinkingColon = setInterval(this.launchBlinkingColon.bind(this), 500);
   }
 
   pushStop() {
     this.timer.stop();
     this.updateViews();
+    this.stopBlinkingColon();
   }
 
   pushPause() {
     this.timer.pause();
     this.updateViews();
+    this.stopBlinkingColon();
   }
 
   dismissAlert() {
     this.alertScreen.style.display = 'none';
     this.updateViews();
+  }
+
+  // Blinking colon
+
+  launchBlinkingColon() {
+    const colonIsVisible = this.secondsDelimIndicator.style.visibility === 'visible';
+    this.secondsDelimIndicator.style.visibility = colonIsVisible ? 'hidden' : 'visible';
+  }
+
+  stopBlinkingColon() {
+    if (this.blinkingColon) {
+      clearInterval(this.blinkingColon);
+      this.blinkingColon = false;
+      this.secondsDelimIndicator.style.visibility = 'visible';
+    }
   }
 
   // Corners radius setter
